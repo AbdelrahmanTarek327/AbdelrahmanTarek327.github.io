@@ -5,14 +5,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import {
   ExternalLink, Layers, Star, ArrowUpRight,
-  ArrowRight, ChevronRight, Cpu, Database, MessageSquare,
+  ArrowRight, ChevronRight, Cpu,
 } from "lucide-react";
 import { GithubIcon } from "@/components/common/BrandIcons";
 import { projects } from "@/lib/data";
 
 const categories = ["All", "AI / Healthcare", "ML / Sports Analytics", "ML / Healthcare", "Data Analytics / BI"];
 
-/* ── Architecture node styles ─── */
 const archColors: Record<string, string> = {
   "NFC Reader": "text-cyan-300 bg-cyan-500/10 border-cyan-500/25",
   "FastAPI": "text-violet-300 bg-violet-500/10 border-violet-500/25",
@@ -33,7 +32,6 @@ function FeaturedProject() {
       transition={{ duration: 0.7 }}
       className="mb-16"
     >
-      {/* Label */}
       <div className="flex items-center gap-3 mb-5">
         <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-violet-500/15 border border-violet-500/30 text-xs font-bold text-violet-300">
           <Star className="w-3 h-3 fill-violet-400" />
@@ -42,17 +40,14 @@ function FeaturedProject() {
         <div className="flex-1 h-px bg-gradient-to-r from-violet-500/30 to-transparent" />
       </div>
 
-      {/* Showcase card */}
       <div className="relative rounded-3xl border border-violet-500/25 overflow-hidden group hover:border-violet-500/45 transition-all duration-500 hover:shadow-[0_0_60px_rgba(139,92,246,0.12)]">
-        {/* Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-violet-600/10 via-[#050814] to-cyan-600/8" />
         <div className="absolute inset-0 grid-bg opacity-20" />
-        {/* Glow blob */}
         <div className="absolute top-0 right-0 w-80 h-80 bg-violet-500/8 rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative z-10 p-7 sm:p-10 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
 
-          {/* ── Left: Case study info ── */}
+          {/* Left: Info */}
           <div className="flex flex-col">
             <div className="flex items-center gap-2 mb-5">
               <span className="text-xs text-slate-500 font-medium">{project.subtitle}</span>
@@ -60,39 +55,30 @@ function FeaturedProject() {
               <span className="text-xs text-violet-400 font-semibold">{project.category}</span>
             </div>
 
-            <h3 className="text-white font-black text-2xl sm:text-3xl leading-tight mb-6 tracking-tight">
+            <h3 className="text-white font-black text-2xl sm:text-3xl leading-tight mb-4 tracking-tight">
               {project.title}
             </h3>
 
-            {/* Problem */}
-            <div className="rounded-xl border border-red-500/15 bg-red-500/5 p-4 mb-3">
-              <p className="text-[10px] text-red-400/90 font-bold uppercase tracking-widest mb-1.5">
-                Problem
-              </p>
-              <p className="text-slate-300 text-sm leading-relaxed">{project.problem}</p>
-            </div>
+            <p className="text-slate-400 text-sm leading-relaxed mb-6">{project.description}</p>
 
-            {/* Solution */}
-            <div className="rounded-xl border border-emerald-500/15 bg-emerald-500/5 p-4 mb-6">
-              <p className="text-[10px] text-emerald-400/90 font-bold uppercase tracking-widest mb-1.5">
-                Solution
-              </p>
-              <p className="text-slate-300 text-sm leading-relaxed">{project.solution}</p>
+            {/* Metrics */}
+            <div className="flex flex-wrap gap-2 mb-6">
+              {project.metrics.map((m) => (
+                <span key={m} className="px-3 py-1.5 text-xs font-semibold rounded-lg bg-violet-500/10 text-violet-300 border border-violet-500/20">
+                  {m}
+                </span>
+              ))}
             </div>
 
             {/* Tags */}
             <div className="flex flex-wrap gap-2 mb-7">
               {project.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="px-2.5 py-1 text-xs font-semibold rounded-lg text-violet-300 bg-violet-500/10 border border-violet-500/20"
-                >
+                <span key={tag} className="px-2.5 py-1 text-xs font-medium rounded-lg text-slate-400 bg-white/4 border border-white/8">
                   {tag}
                 </span>
               ))}
             </div>
 
-            {/* CTA */}
             <div className="flex items-center gap-3 mt-auto">
               <a
                 href={project.github}
@@ -107,52 +93,28 @@ function FeaturedProject() {
             </div>
           </div>
 
-          {/* ── Right: Architecture + Impact ── */}
-          <div className="flex flex-col gap-5">
-            {/* Architecture diagram */}
-            <div className="glass rounded-2xl border border-white/8 p-5">
-              <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest mb-4 flex items-center gap-2">
-                <Cpu className="w-3 h-3" />
-                System Architecture
-              </p>
-              <div className="flex flex-wrap items-center gap-2 justify-center">
-                {project.architecture?.map((node, i, arr) => (
-                  <div key={node} className="flex items-center gap-2">
-                    <div className={`px-3 py-1.5 rounded-lg border text-xs font-semibold whitespace-nowrap ${archColors[node] || "text-slate-300 bg-white/5 border-white/10"}`}>
-                      {node}
+          {/* Right: Architecture */}
+          <div className="flex flex-col justify-center">
+            {project.architecture && project.architecture.length > 0 && (
+              <div className="glass rounded-2xl border border-white/8 p-6">
+                <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest mb-5 flex items-center gap-2">
+                  <Cpu className="w-3 h-3" />
+                  System Architecture
+                </p>
+                <div className="flex flex-wrap items-center gap-2 justify-center">
+                  {project.architecture.map((node, i, arr) => (
+                    <div key={node} className="flex items-center gap-2">
+                      <div className={`px-3 py-2 rounded-lg border text-xs font-semibold whitespace-nowrap ${archColors[node] || "text-slate-300 bg-white/5 border-white/10"}`}>
+                        {node}
+                      </div>
+                      {i < arr.length - 1 && (
+                        <ArrowRight className="w-3 h-3 text-slate-700 flex-shrink-0" />
+                      )}
                     </div>
-                    {i < arr.length - 1 && (
-                      <ArrowRight className="w-3 h-3 text-slate-700 flex-shrink-0" />
-                    )}
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
-
-            {/* Impact metrics */}
-            <div className="glass rounded-2xl border border-white/8 p-5">
-              <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest mb-4 flex items-center gap-2">
-                <Database className="w-3 h-3" />
-                Key Deliverables
-              </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                {project.impact.map((item) => (
-                  <div key={item} className="flex items-start gap-2.5">
-                    <div className="w-1.5 h-1.5 rounded-full bg-violet-400 mt-[6px] flex-shrink-0 shadow-[0_0_6px_rgba(139,92,246,0.6)]" />
-                    <p className="text-slate-300 text-xs leading-relaxed">{item}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Bilingual highlight */}
-            <div className="glass rounded-xl border border-cyan-500/20 p-4 flex items-start gap-3">
-              <MessageSquare className="w-4 h-4 text-cyan-400 flex-shrink-0 mt-0.5" />
-              <div>
-                <p className="text-cyan-300 text-xs font-bold mb-1">Bilingual AI Chatbot</p>
-                <p className="text-slate-500 text-xs">Arabic + English multilingual medical assistant with real-time patient support capabilities.</p>
-              </div>
-            </div>
+            )}
           </div>
         </div>
       </div>
@@ -175,7 +137,6 @@ export default function Projects() {
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-violet-950/6 to-transparent pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-5 sm:px-6">
-        {/* Header */}
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 20 }}
@@ -195,10 +156,8 @@ export default function Projects() {
           </p>
         </motion.div>
 
-        {/* Featured showcase */}
         <FeaturedProject />
 
-        {/* Section divider */}
         <div className="flex items-center gap-4 mb-8">
           <div className="flex-1 h-px bg-white/5" />
           <p className="text-slate-600 text-xs font-semibold uppercase tracking-wider">More Projects</p>
@@ -227,7 +186,7 @@ export default function Projects() {
           ))}
         </motion.div>
 
-        {/* Project cards grid */}
+        {/* Project cards */}
         <AnimatePresence mode="wait">
           <motion.div
             key={activeCategory}
@@ -246,11 +205,11 @@ export default function Projects() {
                 className={`group relative rounded-2xl border ${project.borderColor} overflow-hidden flex flex-col transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_50px_rgba(0,0,0,0.4)]`}
                 style={{ background: "rgba(8, 12, 30, 0.75)", backdropFilter: "blur(16px)" }}
               >
-                {/* Gradient header banner */}
-                <div className={`relative h-16 bg-gradient-to-br ${project.gradient} overflow-hidden flex-shrink-0`}>
+                {/* Gradient banner */}
+                <div className={`relative h-14 bg-gradient-to-br ${project.gradient} overflow-hidden flex-shrink-0`}>
                   <div className="absolute inset-0 grid-bg opacity-30" />
                   <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/40" />
-                  <div className="absolute bottom-3 left-5 z-10">
+                  <div className="absolute bottom-2.5 left-4 z-10">
                     <span className={`text-[11px] font-bold ${project.accentColor} bg-black/50 backdrop-blur-sm px-2.5 py-1 rounded-full border ${project.borderColor}`}>
                       {project.category}
                     </span>
@@ -259,42 +218,33 @@ export default function Projects() {
 
                 <div className="p-5 flex flex-col flex-1">
                   {project.subtitle && (
-                    <p className="text-slate-600 text-[10px] font-semibold uppercase tracking-wider mb-2">{project.subtitle}</p>
+                    <p className="text-slate-600 text-[10px] font-semibold uppercase tracking-wider mb-1.5">{project.subtitle}</p>
                   )}
 
-                  <h3 className="text-white font-bold text-base leading-tight mb-4">{project.title}</h3>
+                  <h3 className="text-white font-bold text-base leading-tight mb-3">{project.title}</h3>
 
-                  {/* Problem / Solution */}
-                  <div className="space-y-3 mb-4">
-                    <div>
-                      <p className="text-[9px] text-red-400/70 font-bold uppercase tracking-widest mb-1">Problem</p>
-                      <p className="text-slate-500 text-xs leading-relaxed line-clamp-2">{project.problem}</p>
+                  <p className="text-slate-500 text-xs leading-relaxed mb-4">{project.description}</p>
+
+                  {/* Metrics chips */}
+                  {project.metrics.length > 0 && (
+                    <div className="flex flex-wrap gap-1.5 mb-4">
+                      {project.metrics.map((m) => (
+                        <span key={m} className={`px-2 py-0.5 text-[10px] font-semibold rounded-md ${project.accentColor} bg-white/4 border border-white/8`}>
+                          {m}
+                        </span>
+                      ))}
                     </div>
-                    <div>
-                      <p className="text-[9px] text-emerald-400/70 font-bold uppercase tracking-widest mb-1">Solution</p>
-                      <p className="text-slate-400 text-xs leading-relaxed line-clamp-2">{project.solution}</p>
-                    </div>
-                  </div>
+                  )}
 
-                  {/* Impact bullets */}
-                  <div className="space-y-1.5 mb-4">
-                    {project.impact.slice(0, 3).map((item) => (
-                      <div key={item} className="flex items-start gap-2 text-xs text-slate-400">
-                        <div className={`w-1 h-1 rounded-full ${project.accentColor.replace("text-", "bg-")} mt-[5px] flex-shrink-0`} />
-                        <span className="leading-relaxed">{item}</span>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Tags */}
+                  {/* Tech tags */}
                   <div className="flex flex-wrap gap-1.5 mb-5">
                     {project.tags.slice(0, 4).map((tag) => (
-                      <span key={tag} className="px-2 py-0.5 text-[10px] rounded-md font-semibold text-slate-400 bg-white/4 border border-white/8">
+                      <span key={tag} className="px-2 py-0.5 text-[10px] rounded-md font-medium text-slate-400 bg-white/4 border border-white/8">
                         {tag}
                       </span>
                     ))}
                     {project.tags.length > 4 && (
-                      <span className="px-2 py-0.5 text-[10px] rounded-md font-semibold text-slate-600 bg-white/2 border border-white/5">
+                      <span className="px-2 py-0.5 text-[10px] rounded-md font-medium text-slate-600 bg-white/2 border border-white/5">
                         +{project.tags.length - 4}
                       </span>
                     )}
@@ -330,7 +280,6 @@ export default function Projects() {
           </motion.div>
         </AnimatePresence>
 
-        {/* GitHub CTA */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}

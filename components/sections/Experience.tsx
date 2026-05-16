@@ -7,7 +7,7 @@ import { experience } from "@/lib/data";
 
 const colorMap: Record<string, {
   badge: string; dotBg: string; dotGlow: string;
-  border: string; accentBorder: string; glow: string; bullet: string; text: string;
+  border: string; accentBorder: string; glow: string; tag: string; text: string;
 }> = {
   violet: {
     badge: "bg-violet-500/10 text-violet-400 border-violet-500/25",
@@ -16,7 +16,7 @@ const colorMap: Record<string, {
     border: "border-violet-500/15 hover:border-violet-500/35",
     accentBorder: "border-l-violet-500/60",
     glow: "hover:shadow-[0_4px_30px_rgba(139,92,246,0.08)]",
-    bullet: "bg-violet-500",
+    tag: "bg-violet-500/8 text-violet-300 border-violet-500/20",
     text: "text-violet-400",
   },
   cyan: {
@@ -26,7 +26,7 @@ const colorMap: Record<string, {
     border: "border-cyan-500/15 hover:border-cyan-500/35",
     accentBorder: "border-l-cyan-500/60",
     glow: "hover:shadow-[0_4px_30px_rgba(6,182,212,0.08)]",
-    bullet: "bg-cyan-500",
+    tag: "bg-cyan-500/8 text-cyan-300 border-cyan-500/20",
     text: "text-cyan-400",
   },
   emerald: {
@@ -36,7 +36,7 @@ const colorMap: Record<string, {
     border: "border-emerald-500/15 hover:border-emerald-500/35",
     accentBorder: "border-l-emerald-500/60",
     glow: "hover:shadow-[0_4px_30px_rgba(52,211,153,0.08)]",
-    bullet: "bg-emerald-500",
+    tag: "bg-emerald-500/8 text-emerald-300 border-emerald-500/20",
     text: "text-emerald-400",
   },
   amber: {
@@ -46,7 +46,7 @@ const colorMap: Record<string, {
     border: "border-amber-500/15 hover:border-amber-500/35",
     accentBorder: "border-l-amber-500/60",
     glow: "hover:shadow-[0_4px_30px_rgba(251,191,36,0.08)]",
-    bullet: "bg-amber-500",
+    tag: "bg-amber-500/8 text-amber-300 border-amber-500/20",
     text: "text-amber-400",
   },
 };
@@ -74,12 +74,11 @@ export default function Experience() {
             <span className="gradient-text-primary">Journey</span>
           </h2>
           <p className="text-slate-400 text-sm sm:text-base max-w-xl mx-auto">
-            Hands-on experience across ML, data analytics, computer vision, and generative AI through intensive programs and real-world internships.
+            Hands-on experience across ML, data analytics, computer vision, and generative AI.
           </p>
         </motion.div>
 
         <div className="relative">
-          {/* Timeline gradient line */}
           <div className="absolute left-[18px] sm:left-[26px] top-3 bottom-3 w-[2px] bg-gradient-to-b from-violet-500/70 via-cyan-500/35 to-transparent rounded-full" />
 
           <div className="space-y-5">
@@ -91,7 +90,7 @@ export default function Experience() {
                   initial={{ opacity: 0, x: -20 }}
                   animate={inView ? { opacity: 1, x: 0 } : {}}
                   transition={{ duration: 0.5, delay: i * 0.08 }}
-                  className="relative pl-12 sm:pl-18"
+                  className="relative"
                   style={{ paddingLeft: "3.5rem" }}
                 >
                   {/* Timeline dot */}
@@ -103,9 +102,7 @@ export default function Experience() {
                   </div>
 
                   {/* Card */}
-                  <div
-                    className={`glass-card rounded-xl border ${c.border} border-l-[3px] ${c.accentBorder} p-5 sm:p-6 transition-all duration-300 ${c.glow}`}
-                  >
+                  <div className={`glass-card rounded-xl border ${c.border} border-l-[3px] ${c.accentBorder} p-5 sm:p-6 transition-all duration-300 ${c.glow}`}>
                     <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-4">
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 flex-wrap mb-1.5">
@@ -130,14 +127,17 @@ export default function Experience() {
                       </div>
                     </div>
 
-                    <ul className="space-y-2">
-                      {item.bullets.map((b, j) => (
-                        <li key={j} className="flex items-start gap-3 text-slate-400 text-sm leading-relaxed">
-                          <div className={`w-1.5 h-1.5 rounded-full ${c.bullet} mt-[7px] flex-shrink-0 opacity-80`} />
-                          {b}
-                        </li>
+                    {/* Tags */}
+                    <div className="flex flex-wrap gap-1.5">
+                      {item.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className={`px-2.5 py-1 text-[11px] font-medium rounded-lg border ${c.tag}`}
+                        >
+                          {tag}
+                        </span>
                       ))}
-                    </ul>
+                    </div>
                   </div>
                 </motion.div>
               );
