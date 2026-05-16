@@ -32,11 +32,38 @@ const highlights = [
   },
 ];
 
-const colorMap: Record<string, string> = {
-  violet: "border-violet-500/20 bg-violet-500/5 text-violet-400",
-  cyan: "border-cyan-500/20 bg-cyan-500/5 text-cyan-400",
-  emerald: "border-emerald-500/20 bg-emerald-500/5 text-emerald-400",
-  amber: "border-amber-500/20 bg-amber-500/5 text-amber-400",
+const colorMap: Record<string, {
+  border: string; bg: string; icon: string;
+  glow: string; via: string;
+}> = {
+  violet: {
+    border: "border-violet-500/20 hover:border-violet-500/40",
+    bg: "bg-violet-500/5",
+    icon: "text-violet-400 bg-violet-500/10 border-violet-500/25",
+    glow: "hover:shadow-[0_8px_30px_rgba(139,92,246,0.12)]",
+    via: "via-violet-500",
+  },
+  cyan: {
+    border: "border-cyan-500/20 hover:border-cyan-500/40",
+    bg: "bg-cyan-500/5",
+    icon: "text-cyan-400 bg-cyan-500/10 border-cyan-500/25",
+    glow: "hover:shadow-[0_8px_30px_rgba(6,182,212,0.12)]",
+    via: "via-cyan-500",
+  },
+  emerald: {
+    border: "border-emerald-500/20 hover:border-emerald-500/40",
+    bg: "bg-emerald-500/5",
+    icon: "text-emerald-400 bg-emerald-500/10 border-emerald-500/25",
+    glow: "hover:shadow-[0_8px_30px_rgba(52,211,153,0.12)]",
+    via: "via-emerald-500",
+  },
+  amber: {
+    border: "border-amber-500/20 hover:border-amber-500/40",
+    bg: "bg-amber-500/5",
+    icon: "text-amber-400 bg-amber-500/10 border-amber-500/25",
+    glow: "hover:shadow-[0_8px_30px_rgba(251,191,36,0.12)]",
+    via: "via-amber-500",
+  },
 };
 
 export default function About() {
@@ -44,8 +71,10 @@ export default function About() {
 
   return (
     <section id="about" className="section-padding relative">
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-violet-950/8 to-transparent pointer-events-none" />
+
       <div className="max-w-6xl mx-auto px-5 sm:px-6" ref={ref}>
-        {/* Section header */}
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -66,22 +95,30 @@ export default function About() {
         </motion.div>
 
         {/* Highlight cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-14">
-          {highlights.map((item, i) => (
-            <motion.div
-              key={item.title}
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className={`glass-card rounded-xl p-5 border card-hover ${colorMap[item.color]}`}
-            >
-              <div className={`inline-flex p-2.5 rounded-lg border mb-3 ${colorMap[item.color]}`}>
-                <item.icon className="w-5 h-5" />
-              </div>
-              <h3 className="font-semibold text-white text-sm mb-1.5">{item.title}</h3>
-              <p className="text-slate-500 text-xs leading-relaxed">{item.desc}</p>
-            </motion.div>
-          ))}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
+          {highlights.map((item, i) => {
+            const c = colorMap[item.color];
+            return (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 20 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className={`relative rounded-2xl border ${c.border} ${c.bg} p-6 transition-all duration-300 cursor-default group overflow-hidden ${c.glow} hover:-translate-y-1`}
+              >
+                {/* Top accent line */}
+                <div className={`absolute top-0 left-4 right-4 h-[2px] bg-gradient-to-r from-transparent ${c.via} to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
+                {/* Bottom left corner glow */}
+                <div className={`absolute bottom-0 left-0 w-24 h-24 ${c.bg} rounded-tr-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl`} />
+
+                <div className={`relative z-10 inline-flex p-3 rounded-xl border mb-4 ${c.icon} transition-transform duration-300 group-hover:scale-110`}>
+                  <item.icon className="w-5 h-5" />
+                </div>
+                <h3 className="relative z-10 font-bold text-white text-sm mb-2">{item.title}</h3>
+                <p className="relative z-10 text-slate-500 text-xs leading-relaxed">{item.desc}</p>
+              </motion.div>
+            );
+          })}
         </div>
 
         {/* Tech badges */}
@@ -92,7 +129,7 @@ export default function About() {
           className="glass rounded-2xl border border-white/6 p-6 sm:p-8"
         >
           <h3 className="text-white font-semibold text-sm mb-5 flex items-center gap-2">
-            <div className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
+            <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_6px_rgba(6,182,212,0.6)]" />
             Technologies I work with
           </h3>
           <div className="flex flex-wrap gap-2">

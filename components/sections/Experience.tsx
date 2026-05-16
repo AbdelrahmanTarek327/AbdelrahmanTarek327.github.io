@@ -2,33 +2,52 @@
 
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { Briefcase, Calendar, CheckCircle2, ArrowRight } from "lucide-react";
+import { Briefcase, Calendar } from "lucide-react";
 import { experience } from "@/lib/data";
 
-const colorMap: Record<string, { badge: string; dot: string; border: string; glow: string }> = {
+const colorMap: Record<string, {
+  badge: string; dotBg: string; dotGlow: string;
+  border: string; accentBorder: string; glow: string; bullet: string; text: string;
+}> = {
   violet: {
-    badge: "bg-violet-500/10 text-violet-400 border-violet-500/20",
-    dot: "bg-violet-500",
-    border: "border-violet-500/20",
-    glow: "shadow-[0_0_20px_rgba(139,92,246,0.1)]",
+    badge: "bg-violet-500/10 text-violet-400 border-violet-500/25",
+    dotBg: "bg-violet-500",
+    dotGlow: "shadow-[0_0_10px_rgba(139,92,246,0.7)]",
+    border: "border-violet-500/15 hover:border-violet-500/35",
+    accentBorder: "border-l-violet-500/60",
+    glow: "hover:shadow-[0_4px_30px_rgba(139,92,246,0.08)]",
+    bullet: "bg-violet-500",
+    text: "text-violet-400",
   },
   cyan: {
-    badge: "bg-cyan-500/10 text-cyan-400 border-cyan-500/20",
-    dot: "bg-cyan-500",
-    border: "border-cyan-500/20",
-    glow: "shadow-[0_0_20px_rgba(6,182,212,0.1)]",
+    badge: "bg-cyan-500/10 text-cyan-400 border-cyan-500/25",
+    dotBg: "bg-cyan-500",
+    dotGlow: "shadow-[0_0_10px_rgba(6,182,212,0.7)]",
+    border: "border-cyan-500/15 hover:border-cyan-500/35",
+    accentBorder: "border-l-cyan-500/60",
+    glow: "hover:shadow-[0_4px_30px_rgba(6,182,212,0.08)]",
+    bullet: "bg-cyan-500",
+    text: "text-cyan-400",
   },
   emerald: {
-    badge: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
-    dot: "bg-emerald-500",
-    border: "border-emerald-500/20",
-    glow: "shadow-[0_0_20px_rgba(52,211,153,0.1)]",
+    badge: "bg-emerald-500/10 text-emerald-400 border-emerald-500/25",
+    dotBg: "bg-emerald-500",
+    dotGlow: "shadow-[0_0_10px_rgba(52,211,153,0.7)]",
+    border: "border-emerald-500/15 hover:border-emerald-500/35",
+    accentBorder: "border-l-emerald-500/60",
+    glow: "hover:shadow-[0_4px_30px_rgba(52,211,153,0.08)]",
+    bullet: "bg-emerald-500",
+    text: "text-emerald-400",
   },
   amber: {
-    badge: "bg-amber-500/10 text-amber-400 border-amber-500/20",
-    dot: "bg-amber-500",
-    border: "border-amber-500/20",
-    glow: "shadow-[0_0_20px_rgba(251,191,36,0.1)]",
+    badge: "bg-amber-500/10 text-amber-400 border-amber-500/25",
+    dotBg: "bg-amber-500",
+    dotGlow: "shadow-[0_0_10px_rgba(251,191,36,0.7)]",
+    border: "border-amber-500/15 hover:border-amber-500/35",
+    accentBorder: "border-l-amber-500/60",
+    glow: "hover:shadow-[0_4px_30px_rgba(251,191,36,0.08)]",
+    bullet: "bg-amber-500",
+    text: "text-amber-400",
   },
 };
 
@@ -37,6 +56,8 @@ export default function Experience() {
 
   return (
     <section id="experience" className="section-padding relative">
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cyan-950/5 to-transparent pointer-events-none" />
+
       <div className="max-w-4xl mx-auto px-5 sm:px-6" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -58,10 +79,10 @@ export default function Experience() {
         </motion.div>
 
         <div className="relative">
-          {/* Timeline line */}
-          <div className="absolute left-5 sm:left-7 top-0 bottom-0 w-px bg-gradient-to-b from-violet-500/40 via-cyan-500/20 to-transparent" />
+          {/* Timeline gradient line */}
+          <div className="absolute left-[18px] sm:left-[26px] top-3 bottom-3 w-[2px] bg-gradient-to-b from-violet-500/70 via-cyan-500/35 to-transparent rounded-full" />
 
-          <div className="space-y-6">
+          <div className="space-y-5">
             {experience.map((item, i) => {
               const c = colorMap[item.color] || colorMap.violet;
               return (
@@ -69,40 +90,41 @@ export default function Experience() {
                   key={item.id}
                   initial={{ opacity: 0, x: -20 }}
                   animate={inView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                  className="relative pl-14 sm:pl-20"
+                  transition={{ duration: 0.5, delay: i * 0.08 }}
+                  className="relative pl-12 sm:pl-18"
+                  style={{ paddingLeft: "3.5rem" }}
                 >
                   {/* Timeline dot */}
-                  <div className="absolute left-3.5 sm:left-5 top-5 flex items-center justify-center">
-                    <div className={`w-3 h-3 rounded-full ${c.dot} ring-2 ring-[#050814] ring-offset-0`} />
+                  <div className="absolute left-[12px] sm:left-[20px] top-5">
+                    <div className={`w-3.5 h-3.5 rounded-full ${c.dotBg} ${c.dotGlow} ring-[3px] ring-[#050814]`} />
                     {item.current && (
-                      <div className={`absolute w-3 h-3 rounded-full ${c.dot} animate-ping opacity-50`} />
+                      <div className={`absolute inset-0 rounded-full ${c.dotBg} animate-ping opacity-40`} />
                     )}
                   </div>
 
+                  {/* Card */}
                   <div
-                    className={`glass-card rounded-xl border ${c.border} p-5 card-hover transition-all duration-300 ${item.current ? c.glow : ""}`}
+                    className={`glass-card rounded-xl border ${c.border} border-l-[3px] ${c.accentBorder} p-5 sm:p-6 transition-all duration-300 ${c.glow}`}
                   >
-                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-4">
-                      <div>
-                        <div className="flex items-center gap-2 flex-wrap mb-1">
-                          <h3 className="text-white font-semibold text-base">{item.role}</h3>
+                    <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-4">
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 flex-wrap mb-1.5">
+                          <h3 className="text-white font-bold text-[15px] leading-tight">{item.role}</h3>
                           {item.current && (
-                            <span className="px-2 py-0.5 text-xs font-medium rounded-full bg-violet-500/15 text-violet-400 border border-violet-500/25">
+                            <span className="px-2 py-0.5 text-[10px] font-bold rounded-full bg-violet-500/15 text-violet-400 border border-violet-500/25 uppercase tracking-wider">
                               Current
                             </span>
                           )}
                         </div>
-                        <p className={`text-sm font-medium ${c.badge.split(" ")[1]}`}>
-                          {item.company}
-                        </p>
+                        <p className={`text-sm font-semibold ${c.text}`}>{item.company}</p>
                       </div>
-                      <div className="flex items-center gap-3 flex-shrink-0">
-                        <span className={`flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-lg border ${c.badge}`}>
+
+                      <div className="flex items-center gap-2 flex-shrink-0 flex-wrap">
+                        <span className={`text-[11px] px-2.5 py-1 rounded-lg border font-medium ${c.badge}`}>
                           {item.type}
                         </span>
-                        <span className="flex items-center gap-1 text-xs text-slate-500">
-                          <Calendar className="w-3 h-3" />
+                        <span className="flex items-center gap-1 text-[11px] text-slate-500 bg-white/3 px-2.5 py-1 rounded-lg border border-white/6 whitespace-nowrap">
+                          <Calendar className="w-3 h-3 flex-shrink-0" />
                           {item.period}
                         </span>
                       </div>
@@ -110,8 +132,8 @@ export default function Experience() {
 
                     <ul className="space-y-2">
                       {item.bullets.map((b, j) => (
-                        <li key={j} className="flex items-start gap-2.5 text-slate-400 text-sm">
-                          <ArrowRight className="w-3.5 h-3.5 mt-0.5 flex-shrink-0 text-slate-600" />
+                        <li key={j} className="flex items-start gap-3 text-slate-400 text-sm leading-relaxed">
+                          <div className={`w-1.5 h-1.5 rounded-full ${c.bullet} mt-[7px] flex-shrink-0 opacity-80`} />
                           {b}
                         </li>
                       ))}

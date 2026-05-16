@@ -35,6 +35,7 @@ body {
   color: #f0f4ff;
 }
 
+/* ── Gradient text ─────────────────────────────────────── */
 .gradient-text {
   background: linear-gradient(135deg, #a78bfa 0%, #38bdf8 50%, #34d399 100%);
   -webkit-background-clip: text;
@@ -49,6 +50,7 @@ body {
   background-clip: text;
 }
 
+/* ── Glassmorphism ─────────────────────────────────────── */
 .glass {
   background: rgba(255, 255, 255, 0.03);
   backdrop-filter: blur(20px);
@@ -57,30 +59,47 @@ body {
 }
 
 .glass-card {
-  background: rgba(139, 92, 246, 0.04);
+  background: rgba(8, 12, 28, 0.6);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(139, 92, 246, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
+/* ── Glows ─────────────────────────────────────────────── */
 .glow-violet {
   box-shadow: 0 0 20px rgba(139, 92, 246, 0.15), 0 0 60px rgba(139, 92, 246, 0.05);
 }
-
 .glow-cyan {
   box-shadow: 0 0 20px rgba(6, 182, 212, 0.15), 0 0 60px rgba(6, 182, 212, 0.05);
 }
 
+/* ── Section layout ────────────────────────────────────── */
 .section-padding {
   padding: 5rem 0;
 }
-
 @media (max-width: 768px) {
   .section-padding {
     padding: 3.5rem 0;
   }
 }
 
+/* ── Background grid ───────────────────────────────────── */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(139, 92, 246, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139, 92, 246, 0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* ── Typography ────────────────────────────────────────── */
+.section-title {
+  font-size: clamp(1.9rem, 4vw, 2.6rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+}
+
+/* ── Animations ────────────────────────────────────────── */
 .animate-gradient {
   background-size: 300% 300%;
   animation: gradient-shift 8s ease infinite;
@@ -101,14 +120,20 @@ body {
   to { transform: rotate(360deg); }
 }
 
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
 .animate-float {
   animation: float 6s ease-in-out infinite;
 }
 
 .animate-spin-slow {
-  animation: spin-slow 20s linear infinite;
+  animation: spin-slow 12s linear infinite;
 }
 
+/* ── Card interactions ─────────────────────────────────── */
 .card-hover {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -118,19 +143,7 @@ body {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(139, 92, 246, 0.1);
 }
 
-.grid-bg {
-  background-image:
-    linear-gradient(rgba(139, 92, 246, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(139, 92, 246, 0.04) 1px, transparent 1px);
-  background-size: 60px 60px;
-}
-
-.section-title {
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-}
-
+/* ── Nav ───────────────────────────────────────────────── */
 .nav-link {
   position: relative;
   color: rgba(148, 163, 184, 1);
@@ -146,13 +159,10 @@ body {
   background: linear-gradient(90deg, #8b5cf6, #06b6d4);
   transition: width 0.3s ease;
 }
-.nav-link:hover::after {
-  width: 100%;
-}
-.nav-link:hover {
-  color: white;
-}
+.nav-link:hover::after { width: 100%; }
+.nav-link:hover { color: white; }
 
+/* ── Form ──────────────────────────────────────────────── */
 input, textarea {
   outline: none;
 }
