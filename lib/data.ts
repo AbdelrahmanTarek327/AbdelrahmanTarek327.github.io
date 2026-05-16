@@ -1,13 +1,15 @@
 export const personalInfo = {
   name: "Abdelrahman Tarek",
   title: "AI & Data Science Engineer",
-  tagline: "Building intelligent systems at the intersection of ML, Deep Learning & Generative AI",
+  tagline: "I design and deploy intelligent systems — from NLP-powered healthcare platforms to production ML pipelines that drive measurable impact.",
   email: "abdelrahmantarek22503@gmail.com",
   phone: "+20 110 162 3257",
   location: "Cairo, Egypt",
   linkedin: "https://www.linkedin.com/in/abdelrahmann-tarek/",
   github: "https://github.com/AbdelrahmanTarek327",
-  summary: `Electronics & Communications Engineering student at Helwan University with deep expertise in Machine Learning, Deep Learning, Computer Vision, and Generative AI. I build end-to-end AI pipelines — from raw data to production-ready systems — with a focus on healthcare AI, intelligent automation, and business intelligence. Currently advancing in Generative AI through the Digital Egypt Pioneers Initiative (DEPI) while contributing to impactful real-world projects.`,
+  summary: `Electronics & Communications Engineer at Helwan University, specializing in architecting end-to-end AI systems — from NLP-driven medical platforms to scalable ML pipelines. I engineer solutions at the intersection of healthcare AI, predictive analytics, and generative intelligence.
+
+My work spans designing DDI detection models, building RAG-powered multilingual chatbots, engineering XGBoost prediction systems, and transforming raw data into executive-grade Power BI intelligence. Currently advancing through DEPI's Generative AI program, deepening expertise in LLMs, RAG architectures, and diffusion models.`,
 };
 
 export const stats = [
@@ -108,54 +110,99 @@ export const experience = [
 export const projects = [
   {
     id: 1,
-    title: "NFC-Based Healthcare System",
+    title: "AI-Driven Drug Interaction Detection System",
     subtitle: "Graduation Project",
+    problem: "Medication errors from undetected drug-drug interactions cause thousands of preventable adverse clinical events annually in hospital settings.",
+    solution: "Engineered a full-stack NFC-based healthcare platform with NLP-powered DDI detection and a bilingual Arabic/English AI medical assistant — bringing intelligent medication safety to point-of-care.",
     description:
-      "A full-stack intelligent healthcare platform featuring NLP-powered Drug–Drug Interaction (DDI) detection and a bilingual Arabic/English medical chatbot for real-time patient support.",
-    longDescription:
-      "Built a production-ready healthcare system combining NFC technology with AI. The DDI detection model analyzes medication risks using NLP, while the bilingual chatbot provides 24/7 patient support in Arabic and English. Backend powered by FastAPI with MongoDB for scalable data management.",
-    tags: ["Python", "FastAPI", "MongoDB", "NLP", "REST APIs", "LLM"],
+      "Production-ready healthcare system combining NFC patient identification with AI-driven medication safety. The DDI detection engine uses transformer-based NLP to flag risk interactions in real time, while the bilingual LLM chatbot delivers 24/7 patient support.",
+    impact: [
+      "Automated DDI detection via transformer-based NLP",
+      "Bilingual AI chatbot (Arabic + English) for patient support",
+      "FastAPI + MongoDB for scalable backend services",
+      "NFC for instant patient record retrieval at point-of-care",
+    ],
+    tags: ["Python", "FastAPI", "MongoDB", "NLP", "REST APIs", "LLM", "NFC"],
     category: "AI / Healthcare",
     featured: true,
     github: "https://github.com/AbdelrahmanTarek327",
-    gradient: "from-violet-600/20 to-cyan-600/20",
+    gradient: "from-violet-600/25 to-cyan-600/20",
     borderColor: "border-violet-500/20",
     accentColor: "text-violet-400",
-    metrics: ["DDI Detection Model", "Bilingual Chatbot", "REST API Backend"],
+    metrics: ["DDI NLP Model", "Bilingual LLM Chatbot", "FastAPI + MongoDB"],
+    architecture: ["NFC Reader", "FastAPI", "MongoDB", "NLP Engine", "LLM Chatbot"],
   },
   {
     id: 2,
     title: "EPL Match Result Predictor",
     subtitle: "NTI Internship Final Project",
+    problem: "Football match outcomes depend on dozens of correlated variables spanning seasons, making classical heuristic approaches unreliable.",
+    solution: "ML pipeline ingesting 24 years of Premier League data, benchmarking Logistic Regression, Random Forest, and XGBoost — with XGBoost delivering best-in-class 3-class accuracy after hyperparameter tuning.",
     description:
-      "Machine learning pipeline predicting English Premier League match outcomes (Home / Draw / Away) using 24 years of historical data with XGBoost achieving best-in-class performance.",
-    longDescription:
-      "Processed and engineered features from 24 years of EPL data (2000–2024). Tested multiple ML models including Logistic Regression, Random Forest, and XGBoost. Achieved highest accuracy with XGBoost through hyperparameter tuning and cross-validation.",
+      "Machine learning system predicting English Premier League match outcomes using 24 years of historical data. XGBoost achieved the highest accuracy across Home Win / Draw / Away Win classification.",
+    impact: [
+      "24-year dataset (2000–2024) processed and engineered",
+      "3-class classification: Home Win / Draw / Away Win",
+      "XGBoost outperformed RF and Logistic Regression",
+      "Cross-validation and hyperparameter tuning pipeline",
+    ],
     tags: ["Python", "XGBoost", "Scikit-learn", "Pandas", "Seaborn", "Matplotlib"],
     category: "ML / Sports Analytics",
     featured: true,
     github: "https://github.com/AbdelrahmanTarek327",
-    gradient: "from-cyan-600/20 to-emerald-600/20",
+    gradient: "from-cyan-600/25 to-emerald-600/20",
     borderColor: "border-cyan-500/20",
     accentColor: "text-cyan-400",
-    metrics: ["2000–2024 Dataset", "XGBoost Best Model", "3-Class Classification"],
+    metrics: ["2000–2024 Dataset", "XGBoost Champion", "3-Class Prediction"],
+    architecture: [],
   },
   {
     id: 3,
+    title: "Kidney Disease Risk Prediction",
+    subtitle: "Elevvo Pathways Internship",
+    problem: "Early-stage chronic kidney disease progresses silently, with most cases detected too late for effective intervention due to limited screening tools.",
+    solution: "End-to-end supervised ML pipeline with automated clinical data preprocessing, feature engineering from biomarkers, and an optimized risk classifier for health screening workflows.",
+    description:
+      "Health risk prediction system using clinical indicators to classify kidney disease risk. Automated the full pipeline from raw data ingestion to production-ready model output.",
+    impact: [
+      "Automated preprocessing pipeline for clinical datasets",
+      "Feature engineering from kidney biomarker indicators",
+      "Benchmarked multiple Scikit-learn classifiers",
+      "Documented results for healthcare team handoff",
+    ],
+    tags: ["Python", "Scikit-learn", "Pandas", "NumPy", "Matplotlib"],
+    category: "ML / Healthcare",
+    featured: false,
+    github: "https://github.com/AbdelrahmanTarek327",
+    gradient: "from-emerald-600/25 to-cyan-600/15",
+    borderColor: "border-emerald-500/20",
+    accentColor: "text-emerald-400",
+    metrics: ["Clinical Dataset", "Risk Classifier", "Automated Pipeline"],
+    architecture: [],
+  },
+  {
+    id: 4,
     title: "Adventure Works Sales Dashboard",
     subtitle: "Power BI Analytics",
+    problem: "Raw multi-region sales data lacked executive-level visibility — leadership couldn't identify performance gaps or forecast trends from raw exports.",
+    solution: "Interactive Power BI dashboard with advanced DAX measures, drill-through KPI pages, and Power Query transformations that turn messy transactional data into strategic intelligence.",
     description:
-      "Executive-level interactive sales analytics dashboard built in Power BI with advanced DAX measures, KPIs for revenue and order trends, and drill-through capabilities.",
-    longDescription:
-      "Transformed raw Adventure Works sales data into an actionable executive dashboard. Used Power Query for advanced data transformations, DAX for custom measures, and designed intuitive drill-through pages for granular analysis.",
+      "Executive-grade sales analytics dashboard with interactive drill-through, custom DAX measures, and automated data transformation via Power Query.",
+    impact: [
+      "KPIs: total revenue, tax, subtotal, and order trends",
+      "Advanced DAX measures for business logic",
+      "Drill-through by region, product, and time period",
+      "Power Query for complex multi-source transformations",
+    ],
     tags: ["Power BI", "DAX", "Power Query", "Data Modeling", "Analytics"],
     category: "Data Analytics / BI",
     featured: false,
     github: "https://github.com/AbdelrahmanTarek327",
-    gradient: "from-amber-600/20 to-orange-600/20",
+    gradient: "from-amber-600/25 to-orange-600/15",
     borderColor: "border-amber-500/20",
     accentColor: "text-amber-400",
     metrics: ["KPI Dashboards", "Advanced DAX", "Drill-through Reports"],
+    architecture: [],
   },
 ];
 
@@ -282,3 +329,42 @@ export const education = {
   grade: "Very Good",
   focus: ["Signal Processing", "Digital Communications", "Machine Learning", "Control Systems"],
 };
+
+export const blogPosts = [
+  {
+    id: 1,
+    title: "Building RAG Systems for Medical AI",
+    excerpt: "How retrieval-augmented generation transforms healthcare chatbots with always-current drug knowledge bases — and why it outperforms fine-tuning for safety-critical domains.",
+    category: "Generative AI",
+    categoryColor: "violet",
+    readTime: "5 min read",
+    href: "https://www.linkedin.com/in/abdelrahmann-tarek/",
+  },
+  {
+    id: 2,
+    title: "XGBoost vs Deep Learning for Tabular Prediction",
+    excerpt: "A practical benchmark on sports analytics data — why XGBoost still dominates structured tabular problems and when neural networks should replace it.",
+    category: "Machine Learning",
+    categoryColor: "cyan",
+    readTime: "7 min read",
+    href: "https://www.linkedin.com/in/abdelrahmann-tarek/",
+  },
+  {
+    id: 3,
+    title: "Designing Executive Power BI Dashboards",
+    excerpt: "Translating ML model outputs and business KPIs into drill-through Power BI dashboards with advanced DAX — a framework for non-technical stakeholders.",
+    category: "Data Analytics",
+    categoryColor: "amber",
+    readTime: "4 min read",
+    href: "https://www.linkedin.com/in/abdelrahmann-tarek/",
+  },
+  {
+    id: 4,
+    title: "Transfer Learning for Medical Imaging",
+    excerpt: "Achieving strong accuracy on kidney disease classification with ResNet and EfficientNet fine-tuning — lessons learned from limited clinical dataset sizes.",
+    category: "Computer Vision",
+    categoryColor: "emerald",
+    readTime: "6 min read",
+    href: "https://www.linkedin.com/in/abdelrahmann-tarek/",
+  },
+];

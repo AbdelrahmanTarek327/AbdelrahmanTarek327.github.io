@@ -86,12 +86,14 @@ export default function About() {
             About Me
           </div>
           <h2 className="section-title text-white mb-4">
-            Building the Future with{" "}
+            Engineering{" "}
             <span className="gradient-text-primary">Intelligent Systems</span>
           </h2>
-          <p className="text-slate-400 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
-            {personalInfo.summary}
-          </p>
+          <div className="text-slate-400 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed space-y-3">
+            {personalInfo.summary.split("\n\n").map((para, i) => (
+              <p key={i}>{para}</p>
+            ))}
+          </div>
         </motion.div>
 
         {/* Highlight cards */}

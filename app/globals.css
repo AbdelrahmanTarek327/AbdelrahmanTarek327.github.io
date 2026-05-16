@@ -13,10 +13,14 @@ html {
 body {
   background: #050814;
   color: rgb(248 250 252);
-  font-family: "Inter", system-ui, sans-serif;
+  font-family: var(--font-inter), system-ui, sans-serif;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-space), var(--font-inter), system-ui, sans-serif;
 }
 
 ::-webkit-scrollbar {

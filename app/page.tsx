@@ -7,12 +7,15 @@ import Experience from "@/components/sections/Experience";
 import Projects from "@/components/sections/Projects";
 import Skills from "@/components/sections/Skills";
 import Education from "@/components/sections/Education";
+import Blog from "@/components/sections/Blog";
 import Contact from "@/components/sections/Contact";
 import LoadingScreen from "@/components/common/LoadingScreen";
+import CustomCursor from "@/components/common/CustomCursor";
 
 export default function Home() {
   return (
     <>
+      <CustomCursor />
       <LoadingScreen />
       <Navbar />
       <main>
@@ -23,6 +26,7 @@ export default function Home() {
         <Projects />
         <Skills />
         <Education />
+        <Blog />
         <Contact />
       </main>
       <Footer />

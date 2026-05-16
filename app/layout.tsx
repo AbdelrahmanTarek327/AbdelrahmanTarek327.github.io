@@ -1,11 +1,18 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
+});
+
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "500", "600", "700"],
 });
 
 const jetBrainsMono = JetBrains_Mono({
@@ -15,13 +22,14 @@ const jetBrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Abdelrahman Tarek | AI & Data Science Engineer",
+  title: "Abdelrahman Tarek | AI & Machine Learning Engineer",
   description:
-    "Portfolio of Abdelrahman Tarek — AI & Data Science Engineer specializing in Machine Learning, Deep Learning, Computer Vision, and Generative AI. Based in Cairo, Egypt.",
+    "Portfolio of Abdelrahman Tarek — AI & ML Engineer specializing in NLP-powered healthcare systems, predictive ML pipelines, computer vision, and generative AI. Based in Cairo, Egypt.",
   keywords: [
     "Abdelrahman Tarek",
-    "Data Scientist",
+    "AI Engineer",
     "Machine Learning Engineer",
+    "Data Scientist",
     "Deep Learning",
     "Generative AI",
     "Computer Vision",
@@ -35,16 +43,16 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    title: "Abdelrahman Tarek | AI & Data Science Engineer",
+    title: "Abdelrahman Tarek | AI & Machine Learning Engineer",
     description:
-      "Portfolio of Abdelrahman Tarek — AI & Data Science Engineer specializing in ML, DL, Computer Vision, and Generative AI.",
+      "AI & ML Engineer specializing in NLP-powered healthcare systems, predictive pipelines, and generative AI.",
     siteName: "Abdelrahman Tarek Portfolio",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Abdelrahman Tarek | AI & Data Science Engineer",
+    title: "Abdelrahman Tarek | AI & Machine Learning Engineer",
     description:
-      "Portfolio of Abdelrahman Tarek — AI & Data Science Engineer specializing in ML, DL, Computer Vision, and Generative AI.",
+      "AI & ML Engineer specializing in NLP-powered healthcare systems, predictive pipelines, and generative AI.",
   },
   robots: {
     index: true,
@@ -67,7 +75,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${jetBrainsMono.variable}`}
+      className={`${inter.variable} ${spaceGrotesk.variable} ${jetBrainsMono.variable}`}
       suppressHydrationWarning
     >
       <head>
