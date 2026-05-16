@@ -1,36 +1,84 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Abdelrahman Tarek — Portfolio Website
+
+A world-class personal portfolio for an AI & Data Science Engineer, built with Next.js 16, TypeScript, Tailwind CSS, and Framer Motion.
+
+## Tech Stack
+
+- **Framework**: Next.js 16 (App Router, Static Export)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS v4
+- **Animations**: Framer Motion
+- **Icons**: Lucide React + custom SVG brand icons
+- **Fonts**: Inter + JetBrains Mono (Google Fonts)
+- **Deployment**: Vercel (free tier)
+
+## Features
+
+- Dark-mode glassmorphism UI
+- Smooth scroll-triggered animations
+- Typing animation hero section
+- Animated skill progress bars
+- Filterable project cards
+- Contact form (opens mailto)
+- SEO metadata + Open Graph + sitemap + robots.txt
+- Static export — deploys anywhere (Vercel, Netlify, GitHub Pages)
+- Fully responsive (mobile-first)
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view locally.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Deploy on Vercel (Free — Recommended)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Push this folder to a new GitHub repo
+2. Go to [vercel.com](https://vercel.com) → New Project → Import your repo
+3. Leave all settings default
+4. Click **Deploy** — live in ~60 seconds with a free `.vercel.app` URL
 
-## Learn More
+## Deploy on Netlify
 
-To learn more about Next.js, take a look at the following resources:
+1. Push to GitHub
+2. Netlify → New site from Git
+3. Build command: `npm run build` | Publish directory: `out`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Updating Content
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**All content lives in one file: `lib/data.ts`**
 
-## Deploy on Vercel
+- `personalInfo` — name, email, social links
+- `experience` — work history entries
+- `projects` — project cards
+- `skills` — skill categories and levels
+- `certifications` — certificates list
+- `stats` — hero stats numbers
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Adding Your Resume
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Place your PDF at `public/resume.pdf` — the navbar "Download Resume" button links to it automatically.
+
+## Project Structure
+
+```
+portfolio-site/
+├── app/
+│   ├── layout.tsx        # SEO metadata, fonts
+│   ├── page.tsx          # Page — assembles all sections
+│   ├── globals.css       # Global styles
+│   ├── sitemap.ts        # SEO sitemap
+│   └── robots.ts         # SEO robots
+├── components/
+│   ├── layout/           # Navbar, Footer
+│   ├── sections/         # Hero, About, Experience, Projects, Skills, Education, Contact
+│   └── common/           # LoadingScreen, BrandIcons
+└── lib/
+    └── data.ts           # ALL CONTENT — edit this
+```
+
+---
+
+Built by Abdelrahman Tarek · 2026
