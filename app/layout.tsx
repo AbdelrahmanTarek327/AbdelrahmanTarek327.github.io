@@ -71,7 +71,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        <link rel="canonical" href="https://abdelrahman-tarek.vercel.app" />
+        <link rel="canonical" href="https://AbdelrahmanTarek327.github.io" />
       </head>
       <body className="min-h-screen antialiased">{children}</body>
     </html>

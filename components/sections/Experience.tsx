@@ -99,7 +99,7 @@ export default function Experience() {
                       </div>
                       <div className="flex items-center gap-3 flex-shrink-0">
                         <span className={`flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-lg border ${c.badge}`}>
-                          <span className="hidden sm:inline">{item.type}</span>
+                          {item.type}
                         </span>
                         <span className="flex items-center gap-1 text-xs text-slate-500">
                           <Calendar className="w-3 h-3" />

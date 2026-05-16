@@ -8,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://abdelrahman-tarek.vercel.app/sitemap.xml",
+    sitemap: "https://AbdelrahmanTarek327.github.io/sitemap.xml",
   };
 }
