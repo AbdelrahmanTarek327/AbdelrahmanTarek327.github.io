@@ -60,7 +60,7 @@ export default function Blog() {
         </motion.div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5">
           {blogPosts.map((post, i) => {
             const c = colorMap[post.categoryColor] || colorMap.violet;
             return (

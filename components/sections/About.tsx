@@ -97,7 +97,7 @@ export default function About() {
         </motion.div>
 
         {/* Highlight cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mb-12">
           {highlights.map((item, i) => {
             const c = colorMap[item.color];
             return (
@@ -117,7 +117,7 @@ export default function About() {
                   <item.icon className="w-5 h-5" />
                 </div>
                 <h3 className="relative z-10 font-bold text-white text-sm mb-2">{item.title}</h3>
-                <p className="relative z-10 text-slate-500 text-xs leading-relaxed">{item.desc}</p>
+                <p className="relative z-10 text-slate-500 text-xs sm:text-sm leading-relaxed">{item.desc}</p>
               </motion.div>
             );
           })}

@@ -58,7 +58,7 @@ export default function Experience() {
     <section id="experience" className="section-padding relative">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cyan-950/5 to-transparent pointer-events-none" />
 
-      <div className="max-w-4xl mx-auto px-5 sm:px-6" ref={ref}>
+      <div className="max-w-5xl mx-auto px-5 sm:px-6" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}

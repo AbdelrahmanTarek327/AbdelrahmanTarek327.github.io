@@ -59,12 +59,12 @@ export default function Stats() {
                 initial={{ opacity: 0, y: 24 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className={`glass rounded-2xl border ${c.border} p-6 sm:p-7 text-center cursor-default transition-all duration-300 group ${c.glow} hover:-translate-y-1`}
+                className={`glass rounded-2xl border ${c.border} p-6 sm:p-7 lg:p-8 text-center cursor-default transition-all duration-300 group ${c.glow} hover:-translate-y-1`}
               >
                 <div className={`inline-flex p-3 rounded-xl ${c.bg} border ${c.border.split(" ")[0]} mb-5 transition-transform duration-300 group-hover:scale-110`}>
                   <Icon className={`w-5 h-5 ${c.text}`} />
                 </div>
-                <div className={`text-4xl sm:text-5xl font-black mb-2 ${c.text} leading-none`}>
+                <div className={`text-4xl sm:text-5xl xl:text-6xl font-black mb-2 ${c.text} leading-none`}>
                   {stat.value}
                 </div>
                 <div className="text-slate-500 text-xs font-medium leading-tight">{stat.label}</div>

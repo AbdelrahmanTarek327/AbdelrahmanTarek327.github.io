@@ -11,8 +11,12 @@ export default function CustomCursor() {
 
   useEffect(() => {
     setMounted(true);
-    // Hide cursor on touch/mobile devices
-    setIsTouch(window.matchMedia("(pointer: coarse)").matches);
+    const coarse = window.matchMedia("(pointer: coarse)").matches;
+    setIsTouch(coarse);
+
+    if (!coarse) {
+      document.body.style.cursor = "none";
+    }
 
     const onMove = (e: MouseEvent) => setPos({ x: e.clientX, y: e.clientY });
     const onOver = (e: MouseEvent) => {
@@ -23,6 +27,7 @@ export default function CustomCursor() {
     window.addEventListener("mousemove", onMove, { passive: true });
     window.addEventListener("mouseover", onOver, { passive: true });
     return () => {
+      document.body.style.cursor = "";
       window.removeEventListener("mousemove", onMove);
       window.removeEventListener("mouseover", onOver);
     };

@@ -53,7 +53,7 @@ export default function Hero() {
             </h1>
 
             {/* Animated role */}
-            <div className="text-lg sm:text-xl font-semibold mb-5 h-8 sm:h-9">
+            <div className="text-lg sm:text-xl lg:text-2xl font-semibold mb-5 h-8 sm:h-9 lg:h-10">
               <TypeAnimation
                 sequence={[
                   "AI & Data Science Engineer", 2200,
@@ -70,7 +70,7 @@ export default function Hero() {
             </div>
 
             {/* Tagline */}
-            <p className="text-slate-400 text-sm sm:text-base max-w-lg mx-auto lg:mx-0 leading-relaxed mb-3">
+            <p className="text-slate-400 text-sm sm:text-base lg:text-lg max-w-lg mx-auto lg:mx-0 leading-relaxed mb-3">
               {personalInfo.tagline}
             </p>
 
@@ -130,7 +130,7 @@ export default function Hero() {
             {/* Background glow */}
             <div className="absolute inset-0 rounded-full bg-gradient-to-br from-violet-600/35 to-cyan-500/20 blur-3xl scale-125" />
 
-            <div className="relative w-64 h-64 sm:w-72 sm:h-72 lg:w-[340px] lg:h-[340px]">
+            <div className="relative w-64 h-64 sm:w-72 sm:h-72 lg:w-[340px] lg:h-[340px] xl:w-[400px] xl:h-[400px]">
               {/* Spinning conic-gradient border */}
               <div
                 className="absolute -inset-[2px] rounded-full animate-spin-slow"
