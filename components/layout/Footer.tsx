@@ -1,6 +1,6 @@
 "use client";
 
-import { Mail, ArrowUp, Zap, Heart } from "lucide-react";
+import { Mail, ArrowUp, Zap } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/common/BrandIcons";
 import { personalInfo } from "@/lib/data";
 
@@ -73,12 +73,9 @@ export default function Footer() {
           </div>
 
           {/* Copyright */}
-          <div className="border-t border-white/5 w-full pt-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-center">
+          <div className="border-t border-white/5 w-full pt-6 text-center">
             <p className="text-slate-600 text-xs">
               © {new Date().getFullYear()} <span className="text-slate-500 font-medium">{personalInfo.name}</span>. All rights reserved.
-            </p>
-            <p className="text-slate-600 text-xs flex items-center gap-1">
-              Built with <Heart className="w-3 h-3 text-violet-500" /> using Next.js · Tailwind · Framer Motion
             </p>
           </div>
         </div>
