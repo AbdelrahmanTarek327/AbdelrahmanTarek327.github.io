@@ -2,7 +2,22 @@
   "permissions": {
     "allow": [
       "Bash(npm run *)",
-      "PowerShell(Copy-Item *)"
+      "PowerShell(Copy-Item *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "Bash(gh run *)",
+      "Bash(curl -s \"https://api.github.com/repos/AbdelrahmanTarek327/AbdelrahmanTarek327.github.io/actions/runs?per_page=3\")",
+      "Bash(python3 -c \"import sys,json; data=json.load\\(sys.stdin\\); [print\\(r['id'], r['status'], r['conclusion'], r['name']\\) for r in data.get\\('workflow_runs',[]\\)]\")",
+      "Bash(node -e \"let d=''; process.stdin.on\\('data',c=>d+=c\\); process.stdin.on\\('end',\\(\\)=>{const r=JSON.parse\\(d\\); r.workflow_runs.forEach\\(x=>console.log\\(x.id, x.conclusion, x.name\\)\\)}\\)\")",
+      "Bash(curl -s \"https://api.github.com/repos/AbdelrahmanTarek327/AbdelrahmanTarek327.github.io/actions/runs/25972979898/jobs\")",
+      "Bash(node -e \"let d=''; process.stdin.on\\('data',c=>d+=c\\); process.stdin.on\\('end',\\(\\)=>{const r=JSON.parse\\(d\\); r.jobs.forEach\\(j=>{console.log\\('JOB:',j.name,j.conclusion\\); j.steps.forEach\\(s=>console.log\\('  STEP:',s.name,s.conclusion,s.number\\)\\)}\\)}\\)\")",
+      "Bash(curl -sL \"https://api.github.com/repos/AbdelrahmanTarek327/AbdelrahmanTarek327.github.io/actions/runs/25972979898/logs\" -o /tmp/ci_logs.zip)",
+      "Bash(echo \"exit: $?\")",
+      "Read(//c/tmp/**)",
+      "Bash(unzip -o ci_logs.zip -d ci_logs)",
+      "Bash(node -e \"let d=''; process.stdin.on\\('data',c=>d+=c\\); process.stdin.on\\('end',\\(\\)=>{const r=JSON.parse\\(d\\); console.log\\('build job id:', r.jobs[0].id\\)}\\)\")",
+      "Bash(curl -s \"https://api.github.com/repos/AbdelrahmanTarek327/AbdelrahmanTarek327.github.io/actions/jobs/76348149122/logs\")"
     ]
   }
 }

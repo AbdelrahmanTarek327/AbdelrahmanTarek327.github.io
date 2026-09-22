@@ -3,216 +3,241 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { Mail, MapPin, Send, ArrowRight, MessageSquare, Phone } from "lucide-react";
+import { Mail, Send, ExternalLink } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/common/BrandIcons";
 import { personalInfo } from "@/lib/data";
 
 export default function Contact() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
-  const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
-  const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
+  const [form, setForm] = useState({ 
+    name: "", 
+    email: "", 
+    inquiryType: "Full-Time / Contract Hiring",
+    workType: "Full-Time",
+    subject: "", 
+    message: "" 
+  });
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("sending");
-    const mailto = `mailto:${personalInfo.email}?subject=${encodeURIComponent(form.subject || "Portfolio Contact")}&body=${encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`)}`;
-    window.open(mailto, "_blank");
-    setTimeout(() => {
-      setStatus("sent");
-      setForm({ name: "", email: "", subject: "", message: "" });
-    }, 800);
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: "b8ae4e70-7046-4953-8f89-a1b3fd1731e8",
+          name: form.name,
+          email: form.email,
+          inquiry_type: form.inquiryType,
+          work_type: form.workType,
+          subject: form.subject || "New Inquiry from Portfolio Website",
+          message: form.message,
+          from_name: "Portfolio Contact Form",
+        }),
+      });
+
+      if (response.ok) {
+        setStatus("sent");
+        setForm({ name: "", email: "", inquiryType: "Full-Time / Contract Hiring", workType: "Full-Time", subject: "", message: "" });
+        setTimeout(() => setStatus("idle"), 4000);
+      } else {
+        setStatus("error");
+        setTimeout(() => setStatus("idle"), 4000);
+      }
+    } catch (error) {
+      console.error(error);
+      setStatus("error");
+      setTimeout(() => setStatus("idle"), 4000);
+    }
   };
 
   const contactLinks = [
     {
       icon: Mail,
       label: "Email",
-      value: personalInfo.email,
-      display: personalInfo.email.split("@")[0] + "@...",
+      display: personalInfo.email,
       href: `mailto:${personalInfo.email}`,
-      color: "text-cyan-400",
-      border: "border-cyan-500/20 hover:border-cyan-500/40",
-      bg: "bg-cyan-500/8",
-      iconBg: "bg-cyan-500/10 border-cyan-500/20",
     },
     {
       icon: LinkedinIcon,
       label: "LinkedIn",
-      value: "abdelrahmann-tarek",
       display: "/abdelrahmann-tarek",
       href: personalInfo.linkedin,
-      color: "text-violet-400",
-      border: "border-violet-500/20 hover:border-violet-500/40",
-      bg: "bg-violet-500/8",
-      iconBg: "bg-violet-500/10 border-violet-500/20",
     },
     {
       icon: GithubIcon,
       label: "GitHub",
-      value: "AbdelrahmanTarek327",
       display: "AbdelrahmanTarek327",
       href: personalInfo.github,
-      color: "text-slate-300",
-      border: "border-white/10 hover:border-white/20",
-      bg: "bg-white/3",
-      iconBg: "bg-white/5 border-white/10",
-    },
-    {
-      icon: Phone,
-      label: "Phone",
-      value: personalInfo.phone,
-      display: personalInfo.phone,
-      href: `tel:${personalInfo.phone}`,
-      color: "text-emerald-400",
-      border: "border-emerald-500/20 hover:border-emerald-500/40",
-      bg: "bg-emerald-500/8",
-      iconBg: "bg-emerald-500/10 border-emerald-500/20",
-    },
-    {
-      icon: MapPin,
-      label: "Location",
-      value: personalInfo.location,
-      display: personalInfo.location,
-      href: null,
-      color: "text-amber-400",
-      border: "border-amber-500/20 hover:border-amber-500/40",
-      bg: "bg-amber-500/8",
-      iconBg: "bg-amber-500/10 border-amber-500/20",
     },
   ];
 
   return (
-    <section id="contact" className="section-padding relative">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cyan-950/5 to-transparent pointer-events-none" />
+    <section id="contact" className="section-padding">
+      <div className="main-container" ref={ref}>
 
-      <div className="max-w-5xl mx-auto px-5 sm:px-6" ref={ref}>
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-14"
+          transition={{ duration: 0.5 }}
+          className="mb-10"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-cyan-500/20 bg-cyan-500/5 text-cyan-400 text-xs font-medium mb-4">
-            <MessageSquare className="w-3 h-3" />
-            Contact
-          </div>
-          <h2 className="section-title text-white mb-4">
-            Let's <span className="gradient-text-primary">Work Together</span>
-          </h2>
-          <p className="text-slate-400 text-sm sm:text-base max-w-xl mx-auto">
-            Open to full-time roles, research collaborations, freelance projects, and internships in AI, ML, and data science.
+          <p className="section-label mb-3">Contact</p>
+          <h2 className="section-title">Get in touch</h2>
+          <p className="text-slate-500 text-sm sm:text-base mt-3 max-w-md">
+            Open to full-time roles, internships, and collaborations in AI, ML, and data engineering.
           </p>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
+
           {/* Contact info */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            initial={{ opacity: 0, y: 16 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.15 }}
             className="lg:col-span-2 flex flex-col gap-3"
           >
-            {contactLinks.map(({ icon: Icon, label, display, href, color, border, bg, iconBg }) => (
-              <div
+            {contactLinks.map(({ icon: Icon, label, display, href }) => (
+              <a
                 key={label}
-                className={`rounded-xl border ${border} ${bg} p-4 flex items-center gap-4 transition-all duration-200 hover:-translate-y-0.5`}
+                href={href}
+                target={href.startsWith("http") ? "_blank" : undefined}
+                rel="noopener noreferrer"
+                className="card rounded-xl p-4 flex items-center gap-3 hover:border-white/14 transition-colors group"
               >
-                <div className={`p-2.5 rounded-lg border ${iconBg} flex-shrink-0 ${color}`}>
-                  <Icon className="w-4 h-4" />
+                <div className="p-2 rounded-lg bg-white/5 border border-white/8 flex-shrink-0 text-slate-400 group-hover:text-slate-200 transition-colors">
+                  <Icon style={{ width: 15, height: 15 }} />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <p className="text-slate-500 text-xs mb-0.5 font-medium">{label}</p>
-                  {href ? (
-                    <a
-                      href={href}
-                      target={href.startsWith("http") ? "_blank" : undefined}
-                      rel="noopener noreferrer"
-                      className={`text-sm font-semibold ${color} hover:underline truncate block`}
-                    >
-                      {display}
-                    </a>
-                  ) : (
-                    <p className={`text-sm font-semibold ${color} truncate`}>{display}</p>
-                  )}
+                  <p className="text-xs text-slate-400 mb-0.5 font-medium">{label}</p>
+                  <p className="text-sm text-slate-200 font-medium truncate group-hover:text-white transition-colors">
+                    {display}
+                  </p>
                 </div>
-              </div>
+                <ExternalLink className="w-4 h-4 text-slate-500 group-hover:text-white transition-colors flex-shrink-0" />
+              </a>
             ))}
           </motion.div>
 
           {/* Contact form */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.3 }}
+            initial={{ opacity: 0, y: 16 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.25 }}
             className="lg:col-span-3"
           >
             <form
               onSubmit={handleSubmit}
-              className="glass-card rounded-2xl border border-white/8 p-6 sm:p-8 space-y-4"
+              className="card rounded-xl p-6 sm:p-7 space-y-4"
             >
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="text-xs text-slate-500 font-semibold mb-1.5 block uppercase tracking-wider">Name</label>
+                  <label className="text-xs text-slate-300 font-medium mb-1.5 block">Name</label>
                   <input
                     type="text"
                     required
                     value={form.name}
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
                     placeholder="Your name"
-                    className="w-full px-4 py-3 rounded-xl bg-white/3 border border-white/8 text-white text-sm placeholder-slate-600 focus:border-violet-500/50 hover:border-white/15 transition-colors"
+                    className="w-full px-3.5 py-2.5 rounded-lg bg-white/3 border border-white/8 text-white text-sm placeholder-slate-500 hover:border-white/12 focus:border-white/20 transition-colors"
                   />
                 </div>
                 <div>
-                  <label className="text-xs text-slate-500 font-semibold mb-1.5 block uppercase tracking-wider">Email</label>
+                  <label className="text-xs text-slate-300 font-medium mb-1.5 block">Email</label>
                   <input
                     type="email"
                     required
                     value={form.email}
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
                     placeholder="your@email.com"
-                    className="w-full px-4 py-3 rounded-xl bg-white/3 border border-white/8 text-white text-sm placeholder-slate-600 focus:border-violet-500/50 hover:border-white/15 transition-colors"
+                    className="w-full px-3.5 py-2.5 rounded-lg bg-white/3 border border-white/8 text-white text-sm placeholder-slate-500 hover:border-white/12 focus:border-white/20 transition-colors"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="text-xs text-slate-500 font-semibold mb-1.5 block uppercase tracking-wider">Subject</label>
+                <label className="text-xs text-slate-300 font-medium mb-1.5 block">Reason for Contact</label>
+                <select
+                  value={form.inquiryType}
+                  onChange={(e) => setForm({ ...form, inquiryType: e.target.value })}
+                  className="w-full px-3.5 py-2.5 rounded-lg bg-white/3 border border-white/8 text-white text-sm hover:border-white/12 focus:border-white/20 transition-colors"
+                  style={{ backgroundImage: "none" }}
+                >
+                  <option className="bg-[#111113] text-white" value="Full-Time / Contract Hiring">💼 Full-Time / Contract Hiring</option>
+                  <option className="bg-[#111113] text-white" value="Internship Opportunity">🎯 Internship Opportunity</option>
+                  <option className="bg-[#111113] text-white" value="Custom AI / LLM / RAG Project">🤖 Custom AI / LLM / RAG Project</option>
+                  <option className="bg-[#111113] text-white" value="General Inquiry / Networking">💬 General Inquiry / Networking</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="text-xs text-slate-300 font-medium mb-1.5 block">Subject</label>
                 <input
                   type="text"
                   value={form.subject}
                   onChange={(e) => setForm({ ...form, subject: e.target.value })}
-                  placeholder="What's this about?"
-                  className="w-full px-4 py-3 rounded-xl bg-white/3 border border-white/8 text-white text-sm placeholder-slate-600 focus:border-violet-500/50 hover:border-white/15 transition-colors"
+                  placeholder="e.g., AI Engineer Role / RAG System Consulting"
+                  className="w-full px-3.5 py-2.5 rounded-lg bg-white/3 border border-white/8 text-white text-sm placeholder-slate-500 hover:border-white/12 focus:border-white/20 transition-colors"
                 />
               </div>
 
               <div>
-                <label className="text-xs text-slate-500 font-semibold mb-1.5 block uppercase tracking-wider">Message</label>
+                <label className="text-xs text-slate-300 font-medium mb-2 block">Work Type</label>
+                <div className="flex flex-wrap gap-2">
+                  {["Full-Time", "Part-Time", "Contract / Freelance"].map((type) => (
+                    <button
+                      key={type}
+                      type="button"
+                      onClick={() => setForm({ ...form, workType: type })}
+                      className={`px-3 py-1.5 rounded-md text-xs font-medium transition-colors border ${
+                        form.workType === type 
+                          ? "bg-white/10 text-white border-white/20" 
+                          : "bg-white/3 text-slate-400 border-white/5 hover:border-white/10"
+                      }`}
+                    >
+                      {type}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <label className="text-xs text-slate-300 font-medium mb-1.5 block">Message</label>
                 <textarea
                   required
                   rows={5}
                   value={form.message}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
-                  placeholder="Tell me about the opportunity, project, or collaboration..."
-                  className="w-full px-4 py-3 rounded-xl bg-white/3 border border-white/8 text-white text-sm placeholder-slate-600 focus:border-violet-500/50 hover:border-white/15 transition-colors resize-none"
+                  placeholder="Describe the role, project scope, tech stack, or timeline..."
+                  className="w-full px-3.5 py-2.5 rounded-lg bg-white/3 border border-white/8 text-white text-sm placeholder-slate-500 hover:border-white/12 focus:border-white/20 transition-colors resize-none"
                 />
               </div>
 
               <button
+                id="contact-submit"
                 type="submit"
                 disabled={status === "sending" || status === "sent"}
-                className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl bg-gradient-to-r from-violet-600 to-violet-700 text-white font-bold text-sm hover:from-violet-500 hover:to-cyan-600 transition-all duration-300 shadow-[0_0_20px_rgba(139,92,246,0.3)] hover:shadow-[0_0_35px_rgba(139,92,246,0.5)] disabled:opacity-50 disabled:cursor-not-allowed"
+                className={`w-full flex items-center justify-center gap-2 py-3 rounded-lg text-white text-sm font-semibold transition-all duration-200 disabled:opacity-80 disabled:cursor-not-allowed ${status === "error" ? "bg-red-500 hover:bg-red-600" :
+                    status === "sent" ? "bg-green-600 hover:bg-green-700" : ""
+                  }`}
+                style={status !== "error" && status !== "sent" ? { background: "var(--accent)" } : undefined}
               >
                 {status === "sent" ? (
-                  <>
-                    <span>Message Sent!</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </>
+                  <span>Message sent! I'll get back to you within 24 hours.</span>
+                ) : status === "error" ? (
+                  <span>Error sending message. Try again?</span>
                 ) : (
                   <>
-                    <Send className="w-4 h-4" />
-                    {status === "sending" ? "Opening email client..." : "Send Message"}
+                    <Send className="w-3.5 h-3.5" />
+                    {status === "sending" ? "Sending..." : "Send Message"}
                   </>
                 )}
               </button>

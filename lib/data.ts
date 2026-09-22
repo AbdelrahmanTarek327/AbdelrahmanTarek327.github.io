@@ -1,21 +1,19 @@
 export const personalInfo = {
   name: "Abdelrahman Tarek",
-  title: "AI & Data Science Engineer",
-  tagline: "I build intelligent systems — from NLP-powered healthcare platforms to predictive ML pipelines.",
+  title: "AI & Machine Learning Engineer",
+  tagline:
+    "I build machine learning and generative AI applications — with a focus on data pipelines, LLMs, RAG systems, and practical AI solutions.",
   email: "abdelrahmantarek22503@gmail.com",
   phone: "+20 110 162 3257",
   location: "Cairo, Egypt",
   linkedin: "https://www.linkedin.com/in/abdelrahmann-tarek/",
   github: "https://github.com/AbdelrahmanTarek327",
-  summary: `Electronics & Communications Engineer specializing in end-to-end AI systems — healthcare NLP, predictive ML pipelines, generative AI, and executive BI dashboards.`,
-};
+  summary: `I'm an Electronics and Communications Engineering graduate from Helwan University, with a practical focus on machine learning, data analysis, and generative AI.
 
-export const stats = [
-  { label: "Projects Completed", value: "10+", icon: "Layers" },
-  { label: "Technologies", value: "20+", icon: "Code2" },
-  { label: "Certifications", value: "7+", icon: "Award" },
-  { label: "Internships", value: "5", icon: "Briefcase" },
-];
+I've worked across ML pipelines, NLP-based healthcare applications, Power BI dashboards, and LLM/RAG systems. Most of my experience comes from internships, structured training programs, and self-directed projects — I'm early in my career, but I've built real things.
+
+I recently completed the DEPI Generative AI program, and I'm actively looking for full-time roles in AI, ML, or data engineering.`,
+};
 
 export const experience = [
   {
@@ -23,9 +21,8 @@ export const experience = [
     role: "Generative AI Professional",
     company: "Digital Egypt Pioneers Initiative (DEPI)",
     type: "Training Program",
-    period: "Dec 2025 – Present",
-    current: true,
-    color: "violet",
+    period: "Dec 2025 – Mar 2026",
+    current: false,
     tags: ["LLMs", "Diffusion Models", "Hugging Face", "NLP", "Transformers"],
   },
   {
@@ -35,7 +32,6 @@ export const experience = [
     type: "Specialization",
     period: "Jan 2026 – Feb 2026",
     current: false,
-    color: "cyan",
     tags: ["CNNs", "ResNet / DenseNet", "Transfer Learning", "Image Classification"],
   },
   {
@@ -45,7 +41,6 @@ export const experience = [
     type: "Internship",
     period: "Jul 2025 – Aug 2025",
     current: false,
-    color: "violet",
     tags: ["ML Pipelines", "Feature Engineering", "Classification", "Python"],
   },
   {
@@ -55,7 +50,6 @@ export const experience = [
     type: "Internship",
     period: "May 2025 – Aug 2025",
     current: false,
-    color: "cyan",
     tags: ["Power BI", "SQL", "Python", "Executive Dashboards"],
   },
   {
@@ -65,17 +59,15 @@ export const experience = [
     type: "Internship",
     period: "May 2025 – Jun 2025",
     current: false,
-    color: "emerald",
     tags: ["Scikit-learn", "Clinical Data", "Health Risk Prediction"],
   },
   {
     id: 6,
-    role: "AI Career Essentials Intern",
+    role: "AI Career Essentials",
     company: "ALX Africa",
     type: "Program",
     period: "Apr 2025 – Jun 2025",
     current: false,
-    color: "amber",
     tags: ["Generative AI Tools", "Prompt Engineering", "AI Ethics"],
   },
 ];
@@ -83,144 +75,93 @@ export const experience = [
 export const projects = [
   {
     id: 1,
-    title: "AI-Driven Drug Interaction Detection System",
+    title: "Drug–Drug Interaction Detection System",
     subtitle: "Graduation Project",
-    description: "NLP-powered DDI detection + bilingual AI medical chatbot, backed by FastAPI & MongoDB.",
-    tags: ["Python", "FastAPI", "MongoDB", "NLP", "REST APIs", "LLM", "NFC"],
+    description:
+      "An NLP-based system that detects potential drug–drug interactions using a retrieval-augmented generation pipeline. The system queries OpenFDA and RxNorm for real pharmacological data, stores it in MongoDB, and serves a bilingual medical chatbot via a FastAPI backend. NFC-enabled medication lookup was integrated for a hardware prototype.",
+    tags: ["Python", "FastAPI", "MongoDB", "NLP", "LLM", "RAG", "OpenFDA", "RxNorm"],
     category: "AI / Healthcare",
     featured: true,
-    github: "https://github.com/AbdelrahmanTarek327",
-    gradient: "from-violet-600/25 to-cyan-600/20",
-    borderColor: "border-violet-500/20",
-    accentColor: "text-violet-400",
-    metrics: ["DDI NLP Model", "Bilingual Chatbot", "FastAPI + MongoDB"],
+    github: "https://github.com/AbdelrahmanTarek327/nfc-demo0",
+    metrics: ["RAG pipeline over OpenFDA + RxNorm", "Bilingual chatbot (EN/AR)", "FastAPI + MongoDB backend", "NFC medication lookup"],
     architecture: ["NFC Reader", "FastAPI", "MongoDB", "NLP Engine", "LLM Chatbot"],
   },
   {
     id: 2,
     title: "EPL Match Result Predictor",
     subtitle: "NTI Internship",
-    description: "XGBoost pipeline predicting Premier League outcomes across 24 years of historical data.",
+    description:
+      "A classification pipeline trained on 24 years of English Premier League match data (2000–2024). Compared multiple models — Logistic Regression, Random Forest, and XGBoost — with XGBoost achieving the best 3-class prediction accuracy (home win / draw / away win).",
     tags: ["Python", "XGBoost", "Scikit-learn", "Pandas", "Matplotlib"],
     category: "ML / Sports Analytics",
     featured: true,
-    github: "https://github.com/AbdelrahmanTarek327",
-    gradient: "from-cyan-600/25 to-emerald-600/20",
-    borderColor: "border-cyan-500/20",
-    accentColor: "text-cyan-400",
-    metrics: ["2000–2024 Dataset", "XGBoost Best Model", "3-Class Prediction"],
+    github: "https://github.com/AbdelrahmanTarek327/EPL-Match-Prediction",
+    metrics: ["2000–2024 match data", "3-class outcome prediction", "XGBoost best performer"],
     architecture: [],
   },
   {
     id: 3,
     title: "Kidney Disease Risk Prediction",
     subtitle: "Elevvo Pathways Internship",
-    description: "Supervised ML pipeline for health risk classification from clinical biomarker data.",
+    description:
+      "A supervised ML pipeline for chronic kidney disease classification from clinical biomarker data. Built end-to-end: data cleaning, feature selection, model training, and evaluation using multiple classifiers.",
     tags: ["Python", "Scikit-learn", "Pandas", "NumPy", "Matplotlib"],
     category: "ML / Healthcare",
     featured: false,
-    github: "https://github.com/AbdelrahmanTarek327",
-    gradient: "from-emerald-600/25 to-cyan-600/15",
-    borderColor: "border-emerald-500/20",
-    accentColor: "text-emerald-400",
-    metrics: ["Clinical Dataset", "Risk Classifier", "Auto Pipeline"],
+    github: "https://github.com/AbdelrahmanTarek327/kidney-disease-classification",
+    metrics: ["Clinical biomarker dataset", "Multi-classifier comparison"],
     architecture: [],
   },
   {
     id: 4,
     title: "Adventure Works Sales Dashboard",
     subtitle: "Power BI Analytics",
-    description: "Executive Power BI dashboard with advanced DAX, KPIs, and drill-through by region & product.",
+    description:
+      "An executive Power BI dashboard built on the Adventure Works dataset. Includes advanced DAX measures, KPI cards, sales by region and product category, and drill-through reports for management-level analysis.",
     tags: ["Power BI", "DAX", "Power Query", "Data Modeling"],
     category: "Data Analytics / BI",
     featured: false,
-    github: "https://github.com/AbdelrahmanTarek327",
-    gradient: "from-amber-600/25 to-orange-600/15",
-    borderColor: "border-amber-500/20",
-    accentColor: "text-amber-400",
-    metrics: ["KPI Dashboards", "Advanced DAX", "Drill-through"],
+    github: "https://github.com/AbdelrahmanTarek327/AdventureWorks-PowerBI-Project",
+    metrics: ["KPI dashboards", "Advanced DAX", "Drill-through by region"],
     architecture: [],
   },
 ];
 
 export const skills = [
   {
-    category: "Languages & Core",
-    icon: "Code2",
-    color: "violet",
-    items: [
-      { name: "Python", level: 92 },
-      { name: "SQL", level: 82 },
-      { name: "NumPy / Pandas", level: 90 },
-    ],
+    category: "Programming",
+    items: ["Python", "SQL", "C++"],
   },
   {
     category: "Machine Learning",
-    icon: "Brain",
-    color: "cyan",
-    items: [
-      { name: "Scikit-learn", level: 88 },
-      { name: "XGBoost / LightGBM", level: 82 },
-      { name: "Feature Engineering", level: 85 },
-    ],
+    items: ["Scikit-learn", "XGBoost", "LightGBM", "Feature Engineering", "Model Evaluation"],
   },
   {
-    category: "Deep Learning",
-    icon: "Cpu",
-    color: "emerald",
-    items: [
-      { name: "TensorFlow / Keras", level: 85 },
-      { name: "CNNs / Transfer Learning", level: 84 },
-      { name: "NLP / Transformers", level: 78 },
-    ],
+    category: "Deep Learning & CV",
+    items: ["TensorFlow", "Keras", "CNNs", "Transfer Learning", "Image Classification", "OpenCV"],
   },
   {
     category: "Generative AI",
-    icon: "Sparkles",
-    color: "violet",
-    items: [
-      { name: "LLMs / Prompt Engineering", level: 80 },
-      { name: "Hugging Face", level: 75 },
-      { name: "GANs / Diffusion Models", level: 70 },
-    ],
+    items: ["LLMs", "Prompt Engineering", "RAG", "Hugging Face", "Diffusion Models", "Agentic AI"],
   },
   {
-    category: "Computer Vision",
-    icon: "Eye",
-    color: "cyan",
-    items: [
-      { name: "Image Classification", level: 85 },
-      { name: "Object Detection", level: 75 },
-      { name: "Face Recognition", level: 72 },
-    ],
+    category: "Data & BI",
+    items: ["Pandas", "NumPy", "Matplotlib", "Power BI", "DAX", "Power Query", "Excel"],
   },
   {
-    category: "Data & BI Tools",
-    icon: "BarChart3",
-    color: "amber",
-    items: [
-      { name: "Power BI / DAX", level: 85 },
-      { name: "Power Query / Excel", level: 82 },
-      { name: "FastAPI / MongoDB", level: 75 },
-    ],
+    category: "Development",
+    items: ["FastAPI", "MongoDB", "Git", "GitHub", "Linux", "REST APIs"],
   },
-];
-
-export const techBadges = [
-  "Python", "TensorFlow", "Keras", "Scikit-learn", "XGBoost",
-  "NumPy", "Pandas", "FastAPI", "MongoDB", "SQL",
-  "Power BI", "DAX", "Hugging Face", "OpenCV", "Matplotlib",
-  "Seaborn", "NLP", "LLMs", "CNNs", "REST APIs",
 ];
 
 export const certifications = [
-  { title: "Future AWS AI Scientist", issuer: "Udacity Nanodegree", color: "amber" },
-  { title: "Generative AI Summer Training", issuer: "NVIDIA DLI × ITI", color: "emerald" },
-  { title: "Data Science Essentials with Python", issuer: "Cisco Networking Academy", color: "cyan" },
-  { title: "IBM Data Analytics Professional", issuer: "IBM × MCIT Egypt", color: "violet" },
-  { title: "Introducing Generative AI with AWS", issuer: "Udacity", color: "amber" },
-  { title: "Machine Learning Foundations", issuer: "AWS Educate", color: "amber" },
-  { title: "AI & Machine Learning Foundations", issuer: "SprintUp by Sprints", color: "violet" },
+  { title: "Future AWS AI Scientist", issuer: "Udacity Nanodegree" },
+  { title: "Generative AI Summer Training", issuer: "NVIDIA DLI × ITI" },
+  { title: "Data Science Essentials with Python", issuer: "Cisco Networking Academy" },
+  { title: "IBM Data Analytics Professional", issuer: "IBM × MCIT Egypt" },
+  { title: "Introducing Generative AI with AWS", issuer: "Udacity" },
+  { title: "Machine Learning Foundations", issuer: "AWS Educate" },
+  { title: "AI & Machine Learning Foundations", issuer: "SprintUp by Sprints" },
 ];
 
 export const education = {
@@ -231,42 +172,3 @@ export const education = {
   grade: "Very Good",
   focus: ["Signal Processing", "Digital Communications", "Machine Learning", "Control Systems"],
 };
-
-export const blogPosts = [
-  {
-    id: 1,
-    title: "Building RAG Systems for Medical AI",
-    excerpt: "Why retrieval-augmented generation beats fine-tuning for drug safety chatbots.",
-    category: "Generative AI",
-    categoryColor: "violet",
-    readTime: "5 min",
-    href: "https://www.linkedin.com/in/abdelrahmann-tarek/",
-  },
-  {
-    id: 2,
-    title: "XGBoost vs Deep Learning for Tabular Data",
-    excerpt: "Benchmarks from real sports analytics — when to skip neural networks.",
-    category: "Machine Learning",
-    categoryColor: "cyan",
-    readTime: "7 min",
-    href: "https://www.linkedin.com/in/abdelrahmann-tarek/",
-  },
-  {
-    id: 3,
-    title: "Executive Power BI Dashboards",
-    excerpt: "Turning ML metrics into drill-through KPI dashboards with DAX.",
-    category: "Data Analytics",
-    categoryColor: "amber",
-    readTime: "4 min",
-    href: "https://www.linkedin.com/in/abdelrahmann-tarek/",
-  },
-  {
-    id: 4,
-    title: "Transfer Learning for Medical Imaging",
-    excerpt: "High accuracy on kidney disease classification with EfficientNet fine-tuning.",
-    category: "Computer Vision",
-    categoryColor: "emerald",
-    readTime: "6 min",
-    href: "https://www.linkedin.com/in/abdelrahmann-tarek/",
-  },
-];
